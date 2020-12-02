@@ -13,7 +13,12 @@ Notes:
 - This is a contest where speed is rewarded, so while classes are preferable, I'll likely be using a lot of tuples.
 - I'll try to acknowledge sources I use, but I may very well grab something from my own repos that I've used and not included the source. If I use your code, let me know, and I'll make a note of it.
 
-## Day 01
+### TOC
+- [Day 01](#day-1-report-repair)
+- [Day 02](#day-2-password-philosophy)
+
+## Day 1: Report Repair
+
 - [Link to Puzzle](https://adventofcode.com/2020/day/1)
 - [Class](AdventOfCode2020/Day01.cs)
 - [Helpers](AdventOfCode2020/Helpers.cs)
@@ -28,7 +33,7 @@ Well, yes. That's definitely a possibility. But real world, I'm already starting
 
 Using a combination function and limiting the set size, we can easily update the function if the Elves in accounting decide they want more data.
 
-## Day 02
+## Day 2: Password Philosophy
 
 - [Link to Puzzle](https://adventofcode.com/2020/day/2)
 - [Class](AdventOfCode2020/Day02.cs)
