@@ -1,5 +1,5 @@
 # AdventOfCode2020
-Advent of Code 2020 solution. Updated the next day (no cheating). See below for explanations.
+Advent of Code 2020 solution. See below for explanations.
 
 ## Solution Layout
 
