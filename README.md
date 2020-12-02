@@ -3,10 +3,10 @@ Advent of Code 2020 solution. See below for explanations.
 
 ## Solution Layout
 
-    Program.cs // Call the various classes.
-    Day01.cs...Day25.cs // Classes for each puzzle.
-    Helpers.cs // Stuff I may use later.
-    Inputs\DayXXInput.txt // Where the inputs are read from.
+- [Program.cs](AdventOfCode2020/Program.cs) // Call the various classes.
+- Day01.cs...Day25.cs // Classes for each puzzle.
+- [Helpers.cs](AdventOfCode2020/Helpers.cs) // Stuff I may use later.
+- Inputs\DayXXInput.txt // Where the inputs are read from.
 
 Notes:
 - I like LINQ. It's quick and easy. This whole repo is likely to be one big old LINQ tutorial.
@@ -14,7 +14,9 @@ Notes:
 - I'll try to acknowledge sources I use, but I may very well grab something from my own repos that I've used and not included the source. If I use your code, let me know, and I'll make a note of it.
 
 ## Day 01
-[Link to Puzzle](https://adventofcode.com/2020/day/1)
+- [Link to Puzzle](https://adventofcode.com/2020/day/1)
+- [Class](AdventOfCode2020/Day01.cs)
+- [Helpers](AdventOfCode2020/Helpers.cs)
 
 ### Part 01
 Simple enough with some for loops. You can throw some checks in there like there's no need to continue if the first number is already bigger than the target number, but with this small data set, why bother.
@@ -28,7 +30,8 @@ Using a combination function and limiting the set size, we can easily update the
 
 ## Day 02
 
-[Link to Puzzle](https://adventofcode.com/2020/day/2)
+- [Link to Puzzle](https://adventofcode.com/2020/day/2)
+- [Class](AdventOfCode2020/Day02.cs)
 
 ### Part 01
 
