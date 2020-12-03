@@ -7,19 +7,11 @@ namespace com.randyslavey.AdventOfCode2020
 {
     class Day01
     {
-        public int TargetSum { get; set; }
-        public int NumCount { get; set; }
         List<int> InputValues = new List<int>();
 
-        public Day01(int targetSum, int numCount)
+        internal string GetSolution(int numCount, int targetSum)
         {
-            TargetSum = targetSum;
-            NumCount = numCount;
-        }
-
-        internal string GetSolution()
-        {
-            return $"{Helpers.FindSum(InputValues.ToArray(), new int[NumCount], 0, InputValues.ToArray().Length - 1, 0, NumCount, TargetSum).Aggregate(1, (acc, val) => acc * val)}";
+            return $"{Helpers.FindSum(InputValues.ToArray(), new int[numCount], 0, InputValues.ToArray().Length - 1, 0, numCount, targetSum).Aggregate(1, (acc, val) => acc * val)}";
         }
 
         internal void GetInputData(string filePath)
