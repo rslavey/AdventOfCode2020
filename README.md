@@ -207,3 +207,40 @@ You did use variables for the 3 and 1, right? If not, no worries. Make them para
 You can get the index of a generic list by doing `list.Select((item, index) => new { item, index })`
 
 ---
+
+## Day 4: Passport Processing
+
+- [Link to Puzzle](https://adventofcode.com/2020/day/4)
+- [Class](AdventOfCode2020/Day04.cs)
+ 
+Things to Know:
+- Regular Expressions
+- Dictionaries
+
+Likely Places to Make Mistakes
+- It's regex. There are 12,443 places to make mistakes
+
+### Part 01
+
+This problem becomes much easier if we can get our data into a Dictionary right away. Read the data and group the batches together into a `Dictionary<string, string>`. Then put all those into a collection.
+
+Now it's a simple matter of checking each dictionary for the existence of the required keys.
+
+### Part 02
+
+Regex!
+
+If you don't love regex, you're going to hate this part. If you are a fan, this was quick and easy. Here are the regex strings I used:
+
+|Regex|Use|
+|---|---|
+|^([0-9]{4})$|4 digit year|
+|^([0-9]+)(cm\|in)$|height|
+|^#(?:[0-9a-fA-F]{6})$|hex color|
+|^(?:amb\|blu\|brn\|gry\|grn\|hzl\|oth)$|eye color|
+|^(?:[0-9]{9})$|pid|
+
+### LINQ Explanations
+
+No LINQ except counting validated batches. Maybe next time.
+---

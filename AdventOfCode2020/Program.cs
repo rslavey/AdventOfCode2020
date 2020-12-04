@@ -6,7 +6,7 @@ namespace com.randyslavey.AdventOfCode2020
     {
         static void Main(string[] args)
         {
-            RunCode(2,1);
+            RunCode(4,2);
             Console.ReadLine();
         }
 
@@ -28,6 +28,11 @@ namespace com.randyslavey.AdventOfCode2020
                     var d3 = new Day03();
                     d3.GetInputData(@".\Inputs\Day03Input.txt");
                     Console.WriteLine(d3.GetSolution(partId));
+                    break;
+                case 4:
+                    var d4 = new Day04();
+                    d4.GetInputData(@".\Inputs\Day04Input.txt");
+                    Console.WriteLine(d4.GetSolution(partId));
                     break;
             }
         }
