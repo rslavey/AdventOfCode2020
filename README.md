@@ -243,4 +243,5 @@ If you don't love regex, you're going to hate this part. If you are a fan, this 
 ### LINQ Explanations
 
 No LINQ except counting validated batches. Maybe next time.
+
 ---
