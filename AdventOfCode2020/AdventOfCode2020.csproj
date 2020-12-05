@@ -43,11 +43,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Day04.cs" />
-    <Compile Include="Day03.cs" />
-    <Compile Include="Day02.cs" />
-    <Compile Include="Day01.cs" />
+    <Compile Include="2020\Day052020.cs" />
+    <Compile Include="2020\Day042020.cs" />
+    <Compile Include="2020\Day032020.cs" />
+    <Compile Include="2020\Day022020.cs" />
+    <Compile Include="2020\Day012020.cs" />
     <Compile Include="Helpers.cs" />
+    <Compile Include="IAdventOfCode.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -55,82 +57,81 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Inputs\Day03Input.txt">
+    <Content Include="Inputs\2020\Day03Input.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Inputs\Day02Input.txt">
+    <Content Include="Inputs\2020\Day02Input.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Inputs\Day01Input.txt">
+    <Content Include="Inputs\2020\Day01Input.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Inputs\Day04Input.txt">
+    <Content Include="Inputs\2020\Day04Input.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Inputs\Day05Input.txt">
+    <Content Include="Inputs\2020\Day05Input.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Inputs\Day06Input.txt">
+    <Content Include="Inputs\2020\Day06Input.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Inputs\Day07Input.txt">
+    <Content Include="Inputs\2020\Day07Input.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Inputs\Day08Input.txt">
+    <Content Include="Inputs\2020\Day08Input.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Inputs\Day09Input.txt">
+    <Content Include="Inputs\2020\Day09Input.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Inputs\Day10Input.txt">
+    <Content Include="Inputs\2020\Day10Input.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Inputs\Day11Input.txt">
+    <Content Include="Inputs\2020\Day11Input.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Inputs\Day12Input.txt">
+    <Content Include="Inputs\2020\Day12Input.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Inputs\Day13Input.txt">
+    <Content Include="Inputs\2020\Day13Input.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Inputs\Day14Input.txt">
+    <Content Include="Inputs\2020\Day14Input.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Inputs\Day15Input.txt">
+    <Content Include="Inputs\2020\Day15Input.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Inputs\Day16Input.txt">
+    <Content Include="Inputs\2020\Day16Input.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Inputs\Day17Input.txt">
+    <Content Include="Inputs\2020\Day17Input.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Inputs\Day18Input.txt">
+    <Content Include="Inputs\2020\Day18Input.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Inputs\Day19Input.txt">
+    <Content Include="Inputs\2020\Day19Input.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Inputs\Day20Input.txt">
+    <Content Include="Inputs\2020\Day20Input.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Inputs\Day21Input.txt">
+    <Content Include="Inputs\2020\Day21Input.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Inputs\Day22Input.txt">
+    <Content Include="Inputs\2020\Day22Input.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Inputs\Day23Input.txt">
+    <Content Include="Inputs\2020\Day23Input.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Inputs\Day24Input.txt">
+    <Content Include="Inputs\2020\Day24Input.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Inputs\Day25Input.txt">
+    <Content Include="Inputs\2020\Day25Input.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Inputs\primes.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

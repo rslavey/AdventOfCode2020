@@ -26,6 +26,5 @@ namespace com.randyslavey.AdventOfCode2020
             }
             return null;
         }
-
     }
 }

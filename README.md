@@ -23,7 +23,7 @@ My solutions for the Advent of Code 2020. As a learning experience, I am attempt
 ## Day 1: Report Repair
 
 - [Link to Puzzle](https://adventofcode.com/2020/day/1)
-- [Class](AdventOfCode2020/Day01.cs)
+- [Class](AdventOfCode2020/2020/Day012020.cs)
 - [Helpers](AdventOfCode2020/Helpers.cs)
 
 Things to Know:
@@ -66,7 +66,7 @@ Again, skip the loops. This small bit of LINQ replaces the following:
 ## Day 2: Password Philosophy
 
 - [Link to Puzzle](https://adventofcode.com/2020/day/2)
-- [Class](AdventOfCode2020/Day02.cs)
+- [Class](AdventOfCode2020/2020/Day022020.cs)
  
 Things to Know:
 - `.ToCharArray()` to run LINQ queries against a string's characters
@@ -156,7 +156,7 @@ is the same as
 ## Day 3: Toboggan Trajectory
 
 - [Link to Puzzle](https://adventofcode.com/2020/day/3)
-- [Class](AdventOfCode2020/Day03.cs)
+- [Class](AdventOfCode2020/2020/Day032020.cs)
  
 Things to Know:
 - You can get the index of a generic list by doing `list.Select((item, index) => new { item, index })`
@@ -211,7 +211,7 @@ You can get the index of a generic list by doing `list.Select((item, index) => n
 ## Day 4: Passport Processing
 
 - [Link to Puzzle](https://adventofcode.com/2020/day/4)
-- [Class](AdventOfCode2020/Day04.cs)
+- [Class](AdventOfCode2020/2020/Day042020.cs)
  
 Things to Know:
 - Regular Expressions
@@ -243,5 +243,59 @@ If you don't love regex, you're going to hate this part. If you are a fan, this 
 ### LINQ Explanations
 
 No LINQ except counting validated batches. Maybe next time.
+
+---
+
+## Day 5: Binary Boarding
+
+- [Link to Puzzle](https://adventofcode.com/2020/day/5)
+- [Class](AdventOfCode2020/2020/Day052020.cs)
+ 
+Things to Know:
+- Binary / base 2 numbering
+
+Likely Places to Make Mistakes
+- Overthinking the problem
+
+### Part 01
+
+This one is cleverly annoying. They took an entire page of text to basically define base 2 numbering. Once you realize that, and modify the inputs accordingly, this becomes quite simple.
+
+    F|L = 0, B|R = 1
+
+We can do a simple string replace, but we've already been playing with Regex, so let's keep it going.
+
+    Regex.Replace(x, @"\w", xx => xx.Value == "R" || xx.Value == "B" ? "1" : "0")
+
+This takes the whole word and for each letter, replaces R and B with 1 and everything else with 0. Getting the largest from here is just a matter of calling `Max()` against the collection.
+
+### Part 02
+
+Remember when I joked about how `Enumerable.Range()` was stupid to use. Well, it may have been there, but here it's a nice hack. Basically take *all* the numbers from the `Min()` to the `Max()` of the collection and find the missing number from the set.
+
+    Enumerable.Range(ValsInBase2.Min(), ValsInBase2.Max() - ValsInBase2.Min() + 1).Except(ValsInBase2).FirstOrDefault();
+
+The beauty of this one is that you can leave off the `FirstOrDefault()` and get all of the missing boarding passes if you, say, lost your entire family's passes.
+
+### LINQ Explanations
+
+Here are some useful methods similar to `Except()` for working with two lists:
+
+    var s1 = new List<int> { 0, 1, 2, 3, 5 };
+    var s2 = new List<int> { 0, 1, 2, 3, 4 };
+
+    Console.WriteLine(string.Join(", ", s1.Except(s2)));
+    Console.WriteLine(string.Join(", ", s2.Except(s1)));
+    Console.WriteLine(string.Join(", ", s1.Intersect(s2)));
+    Console.WriteLine(string.Join(", ", s1.Union(s2)));
+    Console.WriteLine(string.Join(", ", s1.Concat(s2)));
+
+Result:
+
+    5
+    4
+    0, 1, 2, 3
+    0, 1, 2, 3, 5, 4
+    0, 1, 2, 3, 5, 0, 1, 2, 3, 4
 
 ---

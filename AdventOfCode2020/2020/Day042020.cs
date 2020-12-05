@@ -1,4 +1,5 @@
-﻿using System;
+﻿using com.randyslavey.AdventOfCode;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -6,15 +7,35 @@ using System.Text.RegularExpressions;
 
 namespace com.randyslavey.AdventOfCode2020
 {
-    class Day04
+    class Day042020 : IAdventOfCode
     {
-        private List<Dictionary<string, string>> InputValues = new List<Dictionary<string, string>>();
+        public int Result { get; set; }
+        public string[] InputValues { get; set; }
 
-        internal int GetSolution(int part)
+        public string GetSolution(int part)
         {
-            return part == 1 ?
-                InputValues.Count(x => ValidateBatch(x)) :
-                InputValues.Count(x => ValidateBatch(x) && ValidateValues(x));
+            var inputValues = new List<Dictionary<string, string>>();
+            var curBatch = new Dictionary<string, string>();
+            var inputs = new List<Dictionary<string, string>>();
+            foreach (var line in InputValues)
+            {
+                if (line != string.Empty)
+                {
+                    line.Split(' ').ToList().ForEach(x => curBatch.Add(x.Split(':')[0], x.Split(':')[1]));
+                }
+                else
+                {
+                    inputValues.Add(curBatch.ToDictionary(entry => entry.Key, entry => entry.Value));
+                    curBatch.Clear();
+                }
+            }
+            inputValues.Add(curBatch);
+
+            Result = part == 1 ?
+                inputValues.Count(x => ValidateBatch(x)) :
+                inputValues.Count(x => ValidateBatch(x) && ValidateValues(x));
+
+            return $"{Result}";
         }
 
         private bool ValidateValues(Dictionary<string, string> d)
@@ -99,8 +120,7 @@ namespace com.randyslavey.AdventOfCode2020
                 return false;
             }
 
-            var rhcl = new Regex("^#(?:[0-9a-fA-F]{3}){1,2}$");
-            if (!rhcl.IsMatch(d["hcl"]))
+            if (Regex.IsMatch(d["hcl"], "^#(?:[0-9a-fA-F]{3}){1,2}$"))
             {
                 return false;
             }
@@ -111,8 +131,7 @@ namespace com.randyslavey.AdventOfCode2020
                 return false;
             }
 
-            var rpid = new Regex("^(?:[0-9]{9})$");
-            if (!rpid.IsMatch(d["pid"]))
+            if (Regex.IsMatch(d["pid"],"^(?:[0-9]{9})$"))
             {
                 return false;
             }
@@ -124,23 +143,9 @@ namespace com.randyslavey.AdventOfCode2020
             return x.ContainsKey("byr") && x.ContainsKey("iyr") && x.ContainsKey("eyr") && x.ContainsKey("hgt") && x.ContainsKey("hcl") && x.ContainsKey("ecl") && x.ContainsKey("pid");
         }
 
-        internal void GetInputData(string filePath)
+        public void GetInputData(string filePath)
         {
-            var curBatch = new Dictionary<string,string>();
-            var inputs = new List<Dictionary<string, string>>();
-            foreach(var line in File.ReadAllLines(filePath))
-            {
-                if (line != string.Empty)
-                {
-                    line.Split(' ').ToList().ForEach(x => curBatch.Add(x.Split(':')[0], x.Split(':')[1]));
-                }
-                else
-                {
-                    InputValues.Add(curBatch.ToDictionary(entry => entry.Key, entry => entry.Value));
-                    curBatch.Clear();
-                }
-            }
-            InputValues.Add(curBatch);
+            InputValues = File.ReadAllLines(filePath);
         }
     }
 }
