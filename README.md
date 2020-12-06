@@ -20,8 +20,7 @@ My solutions for the Advent of Code 2020. As a learning experience, I am attempt
 - [Day 3: Toboggan Trajectory](#day-3-toboggan-trajectory)
 - [Day 4: Passport Processing](#day-4-passport-processing)
 - [Day 5: Binary Boarding](#day-5-binary-boarding)
-
----
+- [Day 6: Custom Customs](#day-6-custom-customs)
 
 ## Day 1: Report Repair
 
