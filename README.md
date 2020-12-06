@@ -245,7 +245,15 @@ If you don't love regex, you're going to hate this part. If you are a fan, this 
 
 ### LINQ Explanations
 
-No LINQ except counting validated batches. Maybe next time.
+Just look at this big old LINQ statement to turn a batch of garbage text into clean `Dictionary` items. A thing of beauty is a joy forever.
+
+    GroupedInputs.Select(x => x.SelectMany(xx => xx.Split(' ')).Select(xx => new KeyValuePair<string, string>(xx.Split(':')[0], xx.Split(':')[1])).ToDictionary(xxx => xxx.Key, xxx => xxx.Value))
+
+`SelectMany` -- Flatten the batch so instead of `{ { "a", "b", "c"}, { "d", "e", "f" } }` you have `{ "a", "b", "c", "d", "e", "f" }`
+
+`KeyValuePair` -- Split each string by `:` and put the left into the `Key` and the right into the `Value` of a KeyValuePair
+
+`ToDictionary` -- Take the collection of `KeyValuePair` items and turn it into a dictionary
 
 ---
 
@@ -300,5 +308,89 @@ Result:
     0, 1, 2, 3
     0, 1, 2, 3, 5, 4
     0, 1, 2, 3, 5, 0, 1, 2, 3, 4
+
+---
+
+## Day 6: Custom Customs
+
+- [Link to Puzzle](https://adventofcode.com/2020/day/6)
+- [Class](AdventOfCode2020/2020/Day062020.cs)
+ 
+Things to Know:
+- Okay, I swear I'm not privy to what's coming next, but look at yesterday's LINQ explanations
+
+Likely Places to Make Mistakes
+- No idea
+
+### Part 01
+
+This is going to be a really short explanation. This puzzle is basic `Union` and `Intersect` from LINQ. Take your group, do a `Union` with all the character arrays, add them up, and Bob's your uncle.
+
+### Part 02
+
+See Part 01. Repeat but with `Intersect`
+
+### LINQ Explanations
+
+This was kind of fun. Rather than a loop in my program, I wrote an overload that takes a collection of strings, turns each into a character array, does the various `Intersect`, `Union`, `Concat`, and `Except` functions as appropriate, and returns the result.
+
+    internal static string Except(this IEnumerable<string> inputs)
+    {
+        var temp = inputs.FirstOrDefault().ToCharArray();
+        foreach (var item in inputs.Skip(1))
+        {
+            temp = temp.Except(item).ToArray();
+        }
+        return new string(temp);
+    }
+
+    internal static string Concat(this IEnumerable<string> inputs)
+    {
+        var temp = inputs.FirstOrDefault().ToCharArray();
+        foreach (var item in inputs.Skip(1))
+        {
+            temp = temp.Concat(item).ToArray();
+        }
+        return new string(temp);
+    }
+
+    internal static string Intersect(this IEnumerable<string> inputs)
+    {
+        var temp = inputs.FirstOrDefault().ToCharArray();
+        foreach (var item in inputs.Skip(1))
+        {
+            temp = temp.Intersect(item).ToArray();
+        }
+        return new string(temp);
+    }
+
+    internal static string Union(this IEnumerable<string> inputs)
+    {
+        var temp = inputs.FirstOrDefault().ToCharArray();
+        foreach (var item in inputs.Skip(1))
+        {
+            temp = temp.Union(item).ToArray();
+        }
+        return new string(temp);
+    }
+
+Now, if I call `Union()` (note the empty parameters where the LINQ extension requires another list to combine with, e.g. `list1.Union(list2)`), It runs against all the items within the list:
+
+    var strings = new List<string> { "abc", "abz", "azz" };
+
+    Console.WriteLine(strings.Union());
+    Console.WriteLine(strings.Intersect());
+    Console.WriteLine(strings.Except());
+    Console.WriteLine(strings.Concat());
+
+    -----
+
+    abcz
+    a
+    c
+    abcabzazz
+
+Note: Using `Except`, the order does matter. In this case, it takes `abc` and removes the letters that are in `abz`, leaving `c`. Then it removes the letters from `c` that are in `azz` (none), leaving `c`. If you were to reorder the sets, you would get a different result.
+
 
 ---

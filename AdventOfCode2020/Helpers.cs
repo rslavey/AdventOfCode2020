@@ -1,8 +1,10 @@
-﻿using System.Linq;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace com.randyslavey.AdventOfCode2020
 {
-    internal static class Helpers
+    public static class Helpers
     {
         internal static int[] FindSum(int[] arr, int[] data, int start, int end, int index, int r, int target)
         {
@@ -25,6 +27,44 @@ namespace com.randyslavey.AdventOfCode2020
                 }
             }
             return null;
+        }
+
+        internal static string Except(this IEnumerable<string> inputs)
+        {
+            var temp = inputs.FirstOrDefault().ToCharArray();
+            foreach (var item in inputs.Skip(1))
+            {
+                temp = temp.Except(item).ToArray();
+            }
+            return new string(temp);
+        }
+
+        internal static string Concat(this IEnumerable<string> inputs)
+        {
+            var temp = inputs.FirstOrDefault().ToCharArray();
+            foreach (var item in inputs.Skip(1))
+            {
+                temp = temp.Concat(item).ToArray();
+            }
+            return new string(temp);
+        }
+        internal static string Intersect(this IEnumerable<string> inputs)
+        {
+            var temp = inputs.FirstOrDefault().ToCharArray();
+            foreach (var item in inputs.Skip(1))
+            {
+                temp = temp.Intersect(item).ToArray();
+            }
+            return new string(temp);
+        }
+        internal static string Union(this IEnumerable<string> inputs)
+        {
+            var temp = inputs.FirstOrDefault().ToCharArray();
+            foreach (var item in inputs.Skip(1))
+            {
+                temp = temp.Union(item).ToArray();
+            }
+            return new string(temp);
         }
     }
 }

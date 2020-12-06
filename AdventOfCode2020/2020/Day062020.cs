@@ -7,25 +7,24 @@ using System.Text.RegularExpressions;
 
 namespace com.randyslavey.AdventOfCode2020
 {
-    class Day052020 : IAdventOfCode
+    class Day062020 : IAdventOfCodeGroupedData
     {
         public int Result { get; set; }
         public string[] InputValues { get; set; }
-        private IEnumerable<int> ValsInBase2 { get; set; }
+        public IEnumerable<IEnumerable<string>> GroupedInputs { get; set; }
+
         public string GetSolution(int part)
         {
             Result = part == 1 ?
-                ValsInBase2.Max() :
-                Enumerable.Range(ValsInBase2.Min(), ValsInBase2.Max() - ValsInBase2.Min() + 1).Except(ValsInBase2).FirstOrDefault();
+                GroupedInputs.Sum(x => x.Union().Length) :
+                GroupedInputs.Sum(x => x.Intersect().Length);
 
             return $"{Result}";
         }
 
         public void GetInputData(string file)
         {
-            InputValues = File.ReadAllLines(file);
-            ValsInBase2 = InputValues.Select(x => Convert.ToInt32($"{Regex.Replace(x, @"\w", xx => xx.Value == "R" || xx.Value == "B" ? "1" : "0")}", 2));
+            GroupedInputs = File.ReadAllText(file).Split(new string[] { "\r\n\r\n" }, StringSplitOptions.RemoveEmptyEntries).Select(x => x.Split(new string[] { "\r\n" }, StringSplitOptions.RemoveEmptyEntries).Select(xx => xx));
         }
-
     }
 }

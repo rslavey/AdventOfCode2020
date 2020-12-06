@@ -6,7 +6,7 @@ using System.Linq;
 
 namespace com.randyslavey.AdventOfCode2020
 {
-    class Day012020 : IAdventOfCode
+    class Day012020 : IAdventOfCodeUngroupedData
     {
         public int Result { get; set; }
         public string[] InputValues { get; set; }
@@ -20,9 +20,9 @@ namespace com.randyslavey.AdventOfCode2020
             return $"{Result}";
         }
 
-        public void GetInputData(string filePath)
+        public void GetInputData(string file)
         {
-            InputValues = File.ReadAllLines(filePath);
+            InputValues = File.ReadAllLines(file);
         }
     }
 }
