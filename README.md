@@ -21,6 +21,7 @@ My solutions for the Advent of Code 2020. As a learning experience, I am attempt
 - [Day 4: Passport Processing](#day-4-passport-processing)
 - [Day 5: Binary Boarding](#day-5-binary-boarding)
 - [Day 6: Custom Customs](#day-6-custom-customs)
+- [Day 7: Handy Haversacks](#day-7-handy-haversacks)
 
 ## Day 1: Report Repair
 
@@ -391,5 +392,84 @@ Now, if I call `Union()` (note the empty parameters where the LINQ extension req
 
 Note: Using `Except`, the order does matter. In this case, it takes `abc` and removes the letters that are in `abz`, leaving `c`. Then it removes the letters from `c` that are in `azz` (none), leaving `c`. If you were to reorder the sets, you would get a different result.
 
+
+---
+
+## Day 7: Handy Haversacks
+
+- [Link to Puzzle](https://adventofcode.com/2020/day/7)
+- [Class](AdventOfCode2020/2020/Day072020.cs)
+ 
+Things to Know:
+- Recursion
+- Regex
+
+Likely Places to Make Mistakes
+- Getting data via Regex from file
+
+### Part 01
+
+["As I was going to St. Ives..."](https://youtu.be/j_HObrJCJb4?t=17)
+
+Unlike McClane, we're not so lucky for our puzzle to be a trick, but the premise is the same.
+
+Once we have the data, we just need to recurse through it looking for all the bags. Start with the bags that have your bag, then find the bags that have those bags, etc. Eventually, you'll get to a bag that is not in any other bags and your recursion will end.
+
+```csharp
+foreach (var bag in bagDefinitions.Where(x => x.bags.Any(xx => xx.bag == b)))
+{
+    outerBags.Add(bag.bag);
+    FindOuterBags(bag.bag);
+}
+```
+
+We store the bags outside of the recursion (or pass by ref if you're feeling fancy), then return the `Distinct` values. You can do a `Dictionary` and check for its existence before adding to avoid the `Distinct` later, but it's easier to do `Distinct`, IMO.
+
+### Part 02
+
+The reverse of Part 01. Find all the bags inside your target bag and then recursively find all the bags inside of those. The key here is to continually increase and pass the multiplier through the recursion. E.g.
+
+    1 shiny gold contains 2 mirrored blue bags // 2 bags
+    1 mirrored blue bag contains 3 dark indigo bags // 2 mirrored blue bags * 3 dark indigo bags = 6 bags
+    1 dark indigo bag contains 4 striped indigo bags // 4 * 3 * 2 or 6 * 4 == 24 bags
+    etc.
+
+    ---
+```csharp
+foreach (var bag in bagDefinitions.Where(x => x.bag == b).SelectMany(x => x.bags))
+{
+    innerBagsCount += bag.count * m;
+    FindInnerBags(bag.bag, bag.count * m);
+}
+```
+
+### LINQ Explanations
+
+Some work to get our data in a usable format this time. You could do lots of splits and if/then, but I preferred Regex plus LINQ
+
+```csharp
+var r = new Regex(@"^(.*) bags contain (.*)\.$"); // first part is the source bag, second is the bags within it. Don't forget the period at the end of the sentence!
+
+bagDefinitions =
+    File.ReadAllLines(file).Select(x => //read file and get each line
+    (
+        r.Match(x).Groups[1].Value, //first match
+        r.Match(x).Groups[2].Value.Split(',') // second match split on commas
+        .Select(xx =>
+            Regex.Match(xx.Trim(), @"^(.*) bag[s]?$").Groups[1].Value //trim it (there's a space after comma) and remove the spaces and bag(s)
+        )
+        .Select(xx =>
+            Regex.Match(xx, @"^([0-9]+) (.*)$") //for each, get the number and the bag name
+        )
+        .Where(xx =>
+            xx.Success //ignore the "no other bags"
+        )
+        .Select(xx =>
+            (int.Parse(xx.Groups[1].Value), xx.Groups[2].Value)).ToList() //parse the number
+        )
+    ).ToList();
+```
+
+Also, note the `SelectMany` in Part 02. This flattens the bags list so we can get all the bag counts.
 
 ---

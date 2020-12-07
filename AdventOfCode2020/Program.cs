@@ -7,7 +7,7 @@ namespace com.randyslavey.AdventOfCode2020
     {
         static void Main(string[] args)
         {
-            RunCode("2020", "04", 1);
+            RunCode("2020", "07", 1);
             Console.ReadLine();
         }
 
