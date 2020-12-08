@@ -171,6 +171,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="2020\Day082020.cs" />
     <Compile Include="2020\Day072020.cs" />
     <Compile Include="2020\Day062020.cs" />
     <Compile Include="2020\Day052020.cs" />

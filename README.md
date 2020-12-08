@@ -22,6 +22,7 @@ My solutions for the Advent of Code 2020. As a learning experience, I am attempt
 - [Day 5: Binary Boarding](#day-5-binary-boarding)
 - [Day 6: Custom Customs](#day-6-custom-customs)
 - [Day 7: Handy Haversacks](#day-7-handy-haversacks)
+- [Day 8: Handheld Halting](#day-8-handheld-halting)
 
 ## Day 1: Report Repair
 
@@ -471,5 +472,45 @@ bagDefinitions =
 ```
 
 Also, note the `SelectMany` in Part 02. This flattens the bags list so we can get all the bag counts.
+
+---
+
+## Day 8: Handheld Halting
+
+- [Link to Puzzle](https://adventofcode.com/2020/day/8)
+- [Class](AdventOfCode2020/2020/Day082020.cs)
+ 
+Things to Know:
+- Logic
+
+Likely Places to Make Mistakes
+- Being  illogical
+
+### Part 01
+
+This challenge strays from programming knowledge and into whether you can solve a problem. If you can sort out the logic, anyone with basic programming skills should be able to figure this one out.
+
+We're going to get an array and jump around inside of it, modifying the accumulator as we go. The key here is that we need to know if we've visited a specific index or not.
+
+```csharp
+HashSet<int> lineTest = new HashSet<int>();
+...
+while (!lineTest.Any(x => x == line)){
+    lineTest.Add(line);
+    //do stuff
+}
+```
+
+### Part 02
+
+Take Part 01, and do it over and over again, changing the next "jmp" to "nop" or "nop" to "jmp".
+
+```csharp
+i = FormattedInputs.FirstOrDefault(x => x.index > i && (x.op == "nop" || x.op == "jmp")).index;
+```
+
+### LINQ Explanations
+
+The whole point of LINQ is "I want to work with this *ordered* data". There's really no concept of jumping around back and forth inside a lambda. Best not to even try with this one.
 
 ---
